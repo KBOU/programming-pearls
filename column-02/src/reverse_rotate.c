@@ -3,46 +3,22 @@
 #include <string.h>
 #include <time.h>
 
-int check_if_all_visited(int visited[20], int len) {
-	int i;
-	for (i = 0; i < len; i++) {
-		if (visited[i] == 0) {
-			return 0;
-		}
+void reverse(int **array, int start, int end) {
+	int i, j, tmp;
+	for (i = start, j = end; i < j; i++, j--) {
+		tmp = (*array)[i];
+		(*array)[i] = (*array)[j];
+		(*array)[j] = tmp;
 	}
-
-	return 1;
 }
 
-void juggle_rotate(int **array, int n, int i) {
-	int y, x, temp, prev;
-	int *visited;
-	visited = (int *)malloc(sizeof(int) * n);
-	memset(visited, 0, n);
-	if (visited == NULL) {
-		exit(1);
+void reverse_rotate(int **array, int n, int i) {
+	if (i == 0) {
+		return;
 	}
-
-	y = 0;
-	while (1) {
-		temp = (*array)[y];
-		x = (y + i) % n;
-		while (x != y) {
-			prev = (x + n - i) % n;
-			(*array)[prev] =  (*array)[x];
-			visited[prev] = 1;
-			x += i;
-      x %= n;
-		}
-
-		prev = (x + n - i) % n;
-		(*array)[prev] = temp;
-		visited[prev] = 1;
-		if (check_if_all_visited(visited, n)) {
-			break;
-		}
-		y++;
-	}
+	reverse(array, 0, i - 1);
+	reverse(array, i, n - 1);
+	reverse(array, 0, n - 1);
 }
 
 int main(int argc, char *argv[]) {
@@ -72,7 +48,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	clock_t t1 = clock();
-	juggle_rotate(&array, len, index);
+	reverse_rotate(&array, len, index);
 	clock_t t2 = clock();
 
 	for (i = 0; i < len; i++) {
