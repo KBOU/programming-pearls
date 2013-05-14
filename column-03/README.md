@@ -7,7 +7,7 @@
 
 ## Q1. 税率を決める式をみて思うところを述べよ
 
-`
+```
 if income <= 2200
   tax = 0
 else if income <= 2700
@@ -19,7 +19,7 @@ else if income <= 3200
   .
 else
   tax = 53090 + .70 * (income - 102200)
-`
+```
 
 といった式の改善点。
 
