@@ -34,3 +34,7 @@
 ## Q3. 2分探索を再帰で書いてみる
 
 `src/binary_search_re.c`
+
+## Q4. 2分探索した回数を検証してみる
+
+`src/binary_search_num.c`
