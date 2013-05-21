@@ -8,3 +8,7 @@ binary_search_re:
 
 binary_search_num: binary_search_num.c
 	$(CC) -Wall -lm -o $@ $<
+
+exp:
+
+binary_search_final:
